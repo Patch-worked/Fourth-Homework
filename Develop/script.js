@@ -9,6 +9,15 @@ var answerD = document.getElementById('d');
 var count = -1
 var timer = 30
 var interval
+var highscores= [];
+
+// init()???
+
+function init() {
+    initials = localStorage.getItem('initials');
+    resultsContainer.appendChild(initials);
+
+};
 
 function endGame(){
     clearInterval(interval)
