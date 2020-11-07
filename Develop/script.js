@@ -11,13 +11,14 @@ var timer = 30
 var interval
 var highscores= [];
 
-// init()???
+// init()???S
 
-function init() {
-    initials = localStorage.getItem('initials');
-    resultsContainer.appendChild(initials);
+// ???
+// function init() {
+//     initials = localStorage.getItem('initials');
+//     resultsContainer.appendChild(initials);
 
-};
+// };
 
 function endGame(){
     clearInterval(interval)
