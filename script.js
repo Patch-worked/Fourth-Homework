@@ -1,35 +1,196 @@
-var start = document.createElement('button');
-start.setAttribute('class', 'btn');
-start.setAttribute('type', 'submit');
-start.textContent= "Start the test";
-main.append('start');
-console.log(start);
+var quizContainer = document.getElementById('quiz');
+var resultsContainer = document.getElementById('results');
+var startButton = document.getElementById('start');
+var questionbutton = document.getElementById('question');
+var answerA = document.getElementById('a');
+var answerB = document.getElementById('b');
+var answerC = document.getElementById('c');
+var answerD = document.getElementById('d');
+var count = -1
+var timer = 30
+var interval
+var highscores= [];
 
+// init()???S
 
-var button = document.createElement("button");
-button.setAttribute("dataAnswer", questions[i].answer);
+// ???
+// function init() {
+//     initials = localStorage.getItem('initials');
+//     resultsContainer.appendChild(initials);
 
-var myQuestions = [
+// };
+
+function endGame(){
+    clearInterval(interval)
+    questionbutton.style.display='none'
+    answerA.style.display='none'
+    answerB.style.display='none'
+    answerC.style.display='none'
+    answerD.style.display='none'
+    resultsContainer.textContent='score: '+timer
+    var initials= document.createElement("input")
+    initials.setAttribute('id', 'initials')
+    resultsContainer.appendChild(initials)
+    var submitbutton= document.createElement('button')
+    submitbutton.textContent= "Initials"
+    resultsContainer.appendChild(submitbutton)
+    submitbutton.addEventListener('click', function(){
+        localStorage.setItem('initials', initials.value);
+        console.log(document.getElementById("initials").value);
+    })
+}
+
+var quizQuestions = [
     {
-Question: "The answer to this is C",
-Answers: ["A","B","C","D"], 
-Correct: "C",
+
+        question: "What is your quest?",
+        answers: {
+
+            A: 'Holy Grail',
+            B: 'Holy Cow',
+            C: 'Holy Moley',
+            D: 'Holy Holy'
+        },
+        correctAnswer: 'a'
     },
 
-{
-Question: "What was the answer to your last question?",
-Answers: ["Not this one", "Nope", "This one", "Nu uh"],
-Correct: "This one",
-},
+    {
+        question: "What is your favorite colour?",
+        answers: {
 
-{
-Question: "What is the average speed of a coconut laiden swallow?",
-Answers: ['What?', "<I don't know that!","Blue!", "African or European?" ],
-Correct: "African or European?",
-},
+            A: 'I dont know',
+            B: 'Blue',
+            C: 'Blue...no wait!',
+            D: 'Orange',
+        },
+        correctAnswer: 'b'
+
+    },
+    {
+        question: "What is the average speed of a coconut laiden swallow?",
+        answers:{
+
+            A: 'What?',
+            B: 'I dont know',
+            C: 'African or European',
+            D: 'slow'
+
+        },
+        correctAnswer: 'c'
+    },
+
+    {
+        question: "Was this a good reference?",
+        answers:{
+
+            A: 'Reference?',
+            B: 'No not really',
+            C: 'Life of Brian was better',
+            D: 'Yes',
+        },
+        correctAnswer: 'd'
+    }
+
+
+
 ];
-var score = 0;
 
-for (var i = 0; i < myQuestions.length; i++){
-var response
-}
+startButton.addEventListener("click", function(){
+    count++;
+    questionbutton.textContent = quizQuestions[count].question;
+    answerA.textContent = quizQuestions[count].answers.A;
+    answerB.textContent = quizQuestions[count].answers.B;
+    answerC.textContent = quizQuestions[count].answers.C;
+    answerD.textContent = quizQuestions[count].answers.D;
+    startButton.style.display= 'none';
+    
+    
+    
+     interval = setInterval(function(){
+            timer--;
+            console.log(timer)
+            if(timer===0){
+                endGame()
+            }
+
+        }, 1000);
+        
+    
+
+});
+
+answerA.addEventListener("click", function(){
+    if(quizQuestions[count].correctAnswer==='a'){
+        alert('Correct!')
+    }
+    else{
+        timer= timer - 10
+    }
+    count++; 
+    if(count>3){
+        endGame()
+        return
+    }
+    questionbutton.textContent = quizQuestions[count].question;
+    answerA.textContent = quizQuestions[count].answers.A;
+    answerB.textContent = quizQuestions[count].answers.B;
+    answerC.textContent = quizQuestions[count].answers.C;
+    answerD.textContent = quizQuestions[count].answers.D;
+});
+
+answerB.addEventListener("click", function(){
+    if(quizQuestions[count].correctAnswer==='b'){
+        alert('Correct!')
+    }
+    else{
+        timer= timer - 10
+    }
+    count++;
+    if(count>3){
+        endGame() 
+        return
+    }
+    questionbutton.textContent = quizQuestions[count].question;
+    answerA.textContent = quizQuestions[count].answers.A;
+    answerB.textContent = quizQuestions[count].answers.B;
+    answerC.textContent = quizQuestions[count].answers.C;
+    answerD.textContent = quizQuestions[count].answers.D;
+});
+
+answerC.addEventListener("click", function(){
+    if(quizQuestions[count].correctAnswer==='c'){
+        alert('Correct!')
+    }
+    else{
+        timer= timer - 10
+    }
+    count++;
+    if(count>3){
+        endGame()
+        return
+    }
+    questionbutton.textContent = quizQuestions[count].question;
+    answerA.textContent = quizQuestions[count].answers.A;
+    answerB.textContent = quizQuestions[count].answers.B;
+    answerC.textContent = quizQuestions[count].answers.C;
+    answerD.textContent = quizQuestions[count].answers.D;
+});
+
+answerD.addEventListener("click", function(){
+    if(quizQuestions[count].correctAnswer==='d'){
+        alert('Correct!')
+    }
+    else{
+        timer= timer - 10
+    }
+    count++;
+    if(count>3){
+        endGame()
+        return
+    }
+    questionbutton.textContent = quizQuestions[count].question;
+    answerA.textContent = quizQuestions[count].answers.A;
+    answerB.textContent = quizQuestions[count].answers.B;
+    answerC.textContent = quizQuestions[count].answers.C;
+    answerD.textContent = quizQuestions[count].answers.D;
+});
